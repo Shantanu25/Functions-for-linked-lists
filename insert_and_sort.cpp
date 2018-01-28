@@ -48,6 +48,23 @@ void insertTail(int data) {
     }
 }
 
+void reverse_iterative(){
+    Node* current_node = head;
+    Node* prev_node = NULL;
+    Node* next_node = NULL; 
+
+    while(current_node->next != NULL) {
+        next_node = current_node->next; //save next node
+        current_node->next = prev_node; //Link current node to prev
+        
+        prev_node = current_node; //shift focus to next node
+        current_node = next_node; //shift focus to next node
+    }
+    current_node->next = prev_node; //Connect the last node
+    head = current_node;
+    return;
+}
+
 int main()
 {
    cout << "Hello World\n123\n" << endl; 
@@ -61,6 +78,9 @@ int main()
    insertTail(7);
    insertTail(8);
    
+   printAll(head);
+   printf("\n");
+   reverse_iterative();
    printAll(head);
    return 0;
 }
