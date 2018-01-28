@@ -65,6 +65,19 @@ void reverse_iterative(){
     return;
 }
 
+void reverse_recursive(Node* c){
+    Node* next_node = NULL;
+    
+    if(c->next == NULL) {
+        head = c;
+        return;
+    }
+    reverse_recursive(c->next);
+    next_node = c->next;
+    next_node->next = c;
+    c->next = NULL;
+}
+
 int main()
 {
    cout << "Hello World\n123\n" << endl; 
@@ -81,6 +94,9 @@ int main()
    printAll(head);
    printf("\n");
    reverse_iterative();
+   printAll(head);
+   printf("\n");
+   reverse_recursive(head);
    printAll(head);
    return 0;
 }
