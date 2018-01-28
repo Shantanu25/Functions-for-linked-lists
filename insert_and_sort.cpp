@@ -67,14 +67,15 @@ void reverse_iterative(){
 
 void reverse_recursive(Node* c){
     Node* next_node = NULL;
-    
-    if(c->next == NULL) {
+    //if block cannot be shifted below because of "return"
+    if(c->next == NULL) { //What to do after reaching last node
         head = c;
-        return;
+        return; 
     }
-    reverse_recursive(c->next);
-    next_node = c->next;
-    next_node->next = c;
+        
+    reverse_recursive(c->next); //Go to next node until you reach last node
+    next_node = c->next; //save address of next node
+    next_node->next = c; //Reverse link
     c->next = NULL;
 }
 
