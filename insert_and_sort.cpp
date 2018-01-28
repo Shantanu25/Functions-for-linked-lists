@@ -6,13 +6,21 @@ struct Node {
        Node* next;
    };
 Node* head = NULL;
+Node* tail = NULL;
 
 void insertHead(int data) {
     Node* n = new Node();
     n->data = data;
     Node* temp = head;
+    
+    if (head == NULL){ //set first element added as tail
+        tail = n;
+    }
+    
     head = n;
     n->next = temp;
+    
+
 }
 
 void printAll(Node* n){
@@ -24,6 +32,21 @@ void printAll(Node* n){
     printAll(n->next);
 }
 
+void insertTail(int data) {
+    Node* n = new Node();
+    n->data = data;
+    n->next = NULL; //tail always points to NULL
+    
+    if(tail!=NULL) { //if list is not empty
+        Node* temp = tail;
+        temp->next = n;
+        tail = n;
+    }
+    else {
+        tail = n;
+        head = n;
+    }
+}
 
 int main()
 {
@@ -33,6 +56,10 @@ int main()
    insertHead(2);
    insertHead(1);
    
+   insertTail(5);
+   insertTail(6);
+   insertTail(7);
+   insertTail(8);
    
    printAll(head);
    return 0;
